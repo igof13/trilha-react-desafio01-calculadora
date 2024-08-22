@@ -46,8 +46,33 @@ const App = () => {
       setCurrentNumber(String(sum))
       setOperation('')
     }
-
   }
+
+    const handleTimesNumbers = () => {
+
+      if(firstNumber === '0'){
+          setFirstNumber(String(currentNumber));
+          setCurrentNumber('0')
+          setOperation('*')
+      }else {
+        const sum = Number(firstNumber) * Number(currentNumber);
+        setCurrentNumber(String(sum))
+        setOperation('')
+      }
+  }
+
+  const handleDivideNumbers = () => {
+
+    if(firstNumber === '0'){
+        setFirstNumber(String(currentNumber));
+        setCurrentNumber('0')
+        setOperation('/')
+    }else {
+      const sum = Number(firstNumber) / Number(currentNumber);
+      setCurrentNumber(String(sum))
+      setOperation('')
+    }
+}
 
   const handleEquals = () => {
 
@@ -58,6 +83,12 @@ const App = () => {
             break;
           case '-':
             handleMinusNumbers();
+            break;
+          case '*':
+            handleTimesNumbers();
+            break;
+          case '/':
+            handleDivideNumbers();
             break;
           default: 
             break;
@@ -71,8 +102,8 @@ const App = () => {
       <Content>
         <Input value={currentNumber}/>
         <Row>
-          <Button label="x"/>
-          <Button label="/"/>
+          <Button label="x" onClick={handleTimesNumbers}/>
+          <Button label="/" onClick={handleDivideNumbers}/>
           <Button label="c" onClick={handleOnClear}/>
           <Button label="."/>
         </Row>
